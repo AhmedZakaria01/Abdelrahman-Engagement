@@ -25,10 +25,15 @@ const Login = () => {
     if (error) {
       setError(error.message); // Set error message if login fails
     } else {
-      if (data?.user?.user_metadata?.email_verified) {
+      if (
+        data?.user?.user_metadata?.email_verified &&
+        email === "abdo@engagement.com"
+      ) {
         sessionStorage.setItem("authToken", data?.session?.access_token);
 
         navigate("/messageViewer");
+      } else {
+        setError("Email is not verified");
       }
     }
   };
